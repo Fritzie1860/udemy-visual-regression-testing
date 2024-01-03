@@ -33,7 +33,7 @@ describe('Visual Regression Testing',()=>{
             }
 
         )
-    })
+    }) // go to web, wait for selector comes up, then take ss
 
     test('Single Element Snapshot', async function(){
         await page.goto('https://www.example.com')
@@ -45,5 +45,31 @@ describe('Visual Regression Testing',()=>{
             failureThresholdType: 'percent',
             failureThreshold: 0.01
         })
-    })
+    }) // go to web, wait for selector, targeting the selector or area using variable, then take ss
+
+    test('Mobile Snapshot', async function(){
+        await page.goto('https://www.example.com')
+        await page.waitForSelector('h1') 
+        // emulate any mobile device
+        await page.emulate(puppeteer.KnownDevices['iPhone 13'])
+        const image = await page.screenshot()
+        expect(image).toMatchImageSnapshot({
+            failureThresholdType: 'percent',
+            failureThreshold: 0.01
+        })
+    }) // go to web, wait for selector, change device frame, then take ss
+
+    test('Tablet Snapshot', async function(){
+        await page.goto('https://www.example.com')
+        await page.waitForSelector('h1') 
+        // emulate any tablet device
+        await page.emulate(puppeteer.KnownDevices['Galaxy Tab S4 landscape'])
+        const image = await page.screenshot()
+        expect(image).toMatchImageSnapshot({
+            failureThresholdType: 'percent',
+            failureThreshold: 0.01
+        })
+    }) 
+
+    
 })
