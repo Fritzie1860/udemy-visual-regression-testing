@@ -10,7 +10,7 @@ describe('Visual Regression Testing',()=>{
 
     beforeAll(async function(){
         browser = await puppeteer.launch({
-            headless: "new"
+            headless: false
         })
         page = await browser.newPage()
     })
@@ -71,5 +71,17 @@ describe('Visual Regression Testing',()=>{
         })
     }) 
 
-    
+    // hiding elemet on the web before take the ss
+    test('Remove Element Before Snapshot', async function(){
+        await page.goto('https://www.example.com')
+        // evaluate func. If the element not found, just target an empty array or nothing 
+        await page.evaluate(() => {
+            ;(document.querySelectorAll('h1') || []).forEach(el => el.remove()) // only remove specific el (element)
+        })
+        const image = await page.screenshot()
+        expect(image).toMatchImageSnapshot({
+            failureThresholdType: 'percent',
+            failureThreshold: 0.01
+        })
+    })
 })
