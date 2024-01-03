@@ -1,0 +1,30 @@
+{
+  "name": "udemy-visual-regression-testing",
+  "version": "1.0.0",
+  "description": "Visual Regression Testing",
+  "main": "index.js",
+  "scripts": {
+    "test-snapshots": "jest --config=jest.config.js --detectOpenHandles --forceExit",
+    "test-snapshots-update": "jest --config=jest.config.js --updateSnapshot --detectOpenHandles --forceExit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fritzie1860/udemy-visual-regression-testing.git"
+  },
+  "keywords": [
+    "puppeteer",
+    "jest"
+  ],
+  "author": "Zie",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fritzie1860/udemy-visual-regression-testing/issues"
+  },
+  "homepage": "https://github.com/Fritzie1860/udemy-visual-regression-testing#readme",
+  "dependencies": {
+    "jest": "^29.7.0",
+    "jest-image-snapshot": "^6.4.0",
+    "prettier": "^3.1.1",
+    "puppeteer": "^21.6.1"
+  }
+}
